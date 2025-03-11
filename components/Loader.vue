@@ -10,24 +10,31 @@
 <script setup>
 import gsap from 'gsap';
 
+// Create references for the loader elements
 const loader = ref(null);
 const loader_content = ref(null);
 const emit = defineEmits(['loaded']);
 
-onMounted(() => {
+// Handle the page load
+const nuxtApp = useNuxtApp();
+
+// Ensure the loader is visible when the app is loading
+nuxtApp.hook('page:finish', () => {
+	// Loader animation sequence after the page has finished rendering
 	gsap.to(loader_content.value, {
 		opacity: 0,
 		duration: 1,
-		delay: 2,
 		x: -100,
+		delay: 1, // Delayed after page finish
 	});
+
 	gsap.to(loader.value, {
 		duration: 1,
 		x: '-100%',
 		ease: 'power4.out',
-		delay: 2.3,
+		delay: 1.3, // Slight delay after content animation
 		onComplete: () => {
-			emit('loaded');
+			emit('loaded'); // Emit 'loaded' event to let the parent know it’s done
 		},
 	});
 });
