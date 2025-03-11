@@ -17,6 +17,7 @@
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
   "devDependencies": {
+    "@hypernym/nuxt-gsap": "^2.4.3",
     "prettier": "^3.5.3",
     "prettier-plugin-css-order": "^2.1.2",
     "prettier-plugin-tailwindcss": "^0.6.11"
