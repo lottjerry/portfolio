@@ -19,7 +19,7 @@ const emit = defineEmits(['loaded']);
 const nuxtApp = useNuxtApp();
 
 // Ensure the loader is visible when the app is loading
-nuxtApp.hook('page:finish', () => {
+nuxtApp.hook('app:suspense:resolve', () => {
 	// Loader animation sequence after the page has finished rendering
 	gsap.to(loader_content.value, {
 		opacity: 0,
