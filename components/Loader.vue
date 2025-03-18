@@ -69,8 +69,8 @@
       { strokeDasharray: '360', strokeDashoffset: '360' },
       {
         strokeDashoffset: '0',
-        duration: 1.2,
-        ease: 'power2.in',
+        duration: 1.3,
+        ease: 'power2.inOut',
         stroke: 'green',
       },
     )
@@ -78,7 +78,7 @@
     // Loader content animation
     tl.to(loader_content.value, {
       opacity: 0,
-      duration: 1,
+      duration: 0.5,
       x: -100,
     })
 
@@ -86,7 +86,7 @@
     tl.to(loader.value, {
       duration: 1,
       x: '-100%',
-      ease: 'power4.out',
+      ease: 'power4.inOut',
       onComplete: () => {
         emit('loaded') // Emit 'loaded' event
       },
@@ -110,12 +110,12 @@
 
       gsap.fromTo(
         svgCircleWhite.value,
-        { strokeDasharray: '340', strokeDashoffset: '340' },
+        { strokeDasharray: '360', strokeDashoffset: '360' },
         {
           strokeDashoffset: '0',
 					stroke:'white',
-          duration: 1.5,
-          ease: 'power2.in',
+          duration: 2,
+          ease: 'power2.inOut',
           onComplete: () => {
             if (load_Complete) {
               exitLoader()
