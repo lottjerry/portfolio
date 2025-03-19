@@ -30,20 +30,23 @@
     gsap.set(background.value, { x: '-100vw' });
   });
 
-  watch(
-    () => router.currentRoute.value,
-    () => {
-      const tl = gsap.timeline();
+  router.beforeEach((to, from, next) => {
+    const tl = gsap.timeline();
 
-      tl.to(background.value, { x: '0vw', duration: 0.6, ease: 'power4.in' })
-        .to(background.value, {
-          x: '100vw',
-          delay: 0.2,
-          duration: 0.6,
-          ease: 'power4.in',
-        })
-        .set(background.value, { x: '-100vw' });
-    },
-    { deep: true },
-  );
+    tl.to(background.value, {
+      x: '0vw',
+      duration: 0.6,
+      ease: 'power4.in',
+      onComplete: () => {
+        next();
+      },
+    })
+      .to(background.value, {
+        x: '100vw',
+        delay: 0.2,
+        duration: 0.6,
+        ease: 'power4.in',
+      })
+      .set(background.value, { x: '-100vw' });
+  });
 </script>

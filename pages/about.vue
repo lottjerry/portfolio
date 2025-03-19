@@ -1,5 +1,5 @@
 <template>
-  <main class="text-white text-5xl">About Page</main>
+  <main class="text-black text-5xl">About Page</main>
 </template>
 
 <script setup>
