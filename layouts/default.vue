@@ -27,7 +27,7 @@
   const router = useRouter();
 
   onMounted(() => {
-    gsap.set(background.value, { x: '100vw' });
+    gsap.set(background.value, { x: '-100vw' });
   });
 
   watch(
@@ -37,12 +37,12 @@
 
       tl.to(background.value, { x: '0vw', duration: 0.6, ease: 'power4.in' })
         .to(background.value, {
-          x: '-100vw',
+          x: '100vw',
           delay: 0.2,
           duration: 0.6,
           ease: 'power4.in',
         })
-        .set(background.value, { x: '100vw' });
+        .set(background.value, { x: '-100vw' });
     },
     { deep: true },
   );
