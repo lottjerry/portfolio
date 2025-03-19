@@ -1,7 +1,9 @@
 <template>
-  <main>About Page</main>
+  <main class="text-white text-5xl">About Page</main>
 </template>
 
-<script setup></script>
+<script setup>
+
+</script>
 
 <style lang="scss" scoped></style>
