@@ -10,8 +10,10 @@
     <!-- Background Overlay -->
     <div ref="background" class="fixed inset-0 z-30 bg-black"></div>
 
-    <main class="relative z-20 text-white">
-      <slot />
+    <main class="relative z-20">
+      <div ref="item">
+        <slot />
+      </div>
     </main>
 
     <footer class="relative z-50 p-5">
@@ -24,6 +26,7 @@
   import gsap from 'gsap';
 
   const background = ref(null);
+  const item = ref(null);
   const router = useRouter();
 
   onMounted(() => {
@@ -39,6 +42,10 @@
       ease: 'power4.in',
       onComplete: () => {
         next();
+        gsap.set(item.value, {
+          y: '100',
+          opacity: 0
+        });
       },
     })
       .to(background.value, {
@@ -47,6 +54,14 @@
         duration: 0.6,
         ease: 'power4.in',
       })
-      .set(background.value, { x: '-100vw' });
+      .set(background.value, {
+        x: '-100vw',
+      })
+      .to(item.value, {
+        y: '0',
+        opacity: 1,
+        duration: 0.5,
+        ease: 'power2.in',
+      });
   });
 </script>
