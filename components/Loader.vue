@@ -54,6 +54,7 @@
       ease: 'power4.inOut',
       onComplete: () => {
         emit('loaded'); // Emit 'loaded' event
+        console.log('load complete')
       },
     });
   };
