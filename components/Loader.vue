@@ -3,8 +3,20 @@
     ref="loader"
     class="fixed inset-0 z-[999] flex items-center justify-center bg-black"
   >
-    <div ref="loader_content" :class="load_Complete ? '' : 'animate-pulse'">
-      <AnimationLogo ref="animationLogo" />
+    <div class="flex flex-col items-center justify-center gap-5">
+      <div ref="loader_logo" :class="load_Complete ? '' : 'animate-pulse'">
+        <AnimationLogo ref="animationLogo" />
+      </div>
+      <div ref="loader_lottie">
+        <client-only>
+          <Vue3Lottie
+            :animationLink="animationLink"
+            :height="60"
+            :speed="1.3"
+            :loop="false"
+          />
+        </client-only>
+      </div>
     </div>
   </div>
 </template>
@@ -15,12 +27,18 @@
   // Create references for the loader elements
   const loader = ref(null);
   const animationLogo = ref(null);
-  const loader_content = ref(null);
+  const loader_logo = ref(null);
+  const loader_lottie = ref(null);
   const load_Complete = ref(false);
   const emit = defineEmits(['loaded']);
 
   // Handle the page load
   const nuxtApp = useNuxtApp();
+
+  // Lottie animation link
+  const animationLink = ref(
+    'https://lottie.host/25ebff75-f929-458f-8f08-d6a4ccfb9076/bHX7EvaQfY.json',
+  );
 
   nuxtApp.hook('app:suspense:resolve', () => {
     load_Complete.value = true;
@@ -34,16 +52,17 @@
       { strokeDasharray: '360', strokeDashoffset: '360' },
       {
         strokeDashoffset: '0',
-        duration: 1.3,
+        delay: 2,
+        duration: 1.8,
         ease: 'power2.inOut',
-        stroke: 'green',
+        stroke: 'black',
       },
     );
 
-    // Loader content animation
-    tl.to(loader_content.value, {
+    // Loader logo animation
+    tl.to(loader_logo.value, {
       opacity: 0,
-      duration: 0.5,
+      duration: 1,
       x: -100,
     });
 
@@ -54,7 +73,7 @@
       ease: 'power4.inOut',
       onComplete: () => {
         emit('loaded'); // Emit 'loaded' event
-        console.log('load complete')
+        console.log('load complete');
       },
     });
   };
