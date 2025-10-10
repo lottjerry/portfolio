@@ -30,7 +30,7 @@
       class="z-10 flex h-dvh w-dvw flex-1 flex-col items-center justify-center space-y-6"
     >
       <!-- Custom Pagination Bullets ABOVE the slider -->
-      <div class="custom-swiper-pagination"></div>
+      <div class="custom-swiper-pagination text-center"></div>
 
       <!-- Swiper Slider -->
       <Swiper :modules="modules" :pagination="pagination" class="h-1/2 w-full">
@@ -73,13 +73,15 @@
   // Swiper config
   const modules = [Pagination];
 
-  const pagination = {
-    el: '.custom-swiper-pagination', // Connect to our manual container
-    clickable: true,
-    renderBullet(index, className) {
-      return `<span class="${className} w-4 h-4 bg-gray-300 rounded-full inline-block"></span>`;
-    },
-  };
+const pagination = {
+  el: '.custom-swiper-pagination',
+  clickable: true,
+  renderBullet(index, className) {
+    const number = (index + 1).toString().padStart(2, '0');
+    return `<span class="${className}" data-index="${index}">${number}</span>`;
+  },
+};
+
 
   const bgOverlay = ref(null);
 
@@ -119,13 +121,23 @@
     align-items: center;
   }
 
-  /* Add this to your <style> section */
-  .swiper-pagination-bullet {
-    @apply mx-1;
-    transition: background-color 0.3s;
-  }
+  /* Remove Swiper's default bullet styles */
+.custom-swiper-pagination .swiper-pagination-bullet {
+  all: unset; /* Remove all default styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.3rem;
+  opacity: 0.3;
+  padding: 10px;
+}
 
-  .swiper-pagination-bullet-active {
-    @apply bg-black;
-  }
+/* Active bullet styling */
+.custom-swiper-pagination .swiper-pagination-bullet-active {
+  font-weight: 500;
+  color: black;
+  opacity: 1;
+  transition: opacity 3s;
+}
 </style>
