@@ -33,15 +33,15 @@
       <div class="custom-swiper-pagination text-center"></div>
 
       <!-- Swiper Slider -->
-      <Swiper :modules="modules" :pagination="pagination" class="h-1/2 w-full">
+      <Swiper :modules="modules" :pagination="pagination"   :speed="1200" class="h-1/2 w-full">
         <SwiperSlide class="swiper-slide">
-          <img src="/assets/images/img1.jpg" alt="" class="w-1/2" />
+          <img src="/assets/images/img1.jpg" alt="" class="slide-image w-1/2" />
         </SwiperSlide>
         <SwiperSlide class="swiper-slide">
-          <img src="/assets/images/img2.jpg" alt="" class="w-1/2" />
+          <img src="/assets/images/img2.jpg" alt="" class="slide-image w-1/2" />
         </SwiperSlide>
         <SwiperSlide class="swiper-slide">
-          <img src="/assets/images/img3.jpg" alt="" class="w-1/2" />
+          <img src="/assets/images/img3.jpg" alt="" class="slide-image w-1/2" />
         </SwiperSlide>
       </Swiper>
     </div>
@@ -68,7 +68,6 @@
 
   // Swiper config
   const modules = [Pagination];
-
 
   const pagination = {
     el: '.custom-swiper-pagination',
@@ -124,12 +123,38 @@
           paddingLeft: '0rem',
           paddingRight: '0rem',
           duration: 1,
-          ease: 'power2.out',
+          ease: 'power1.out',
           delay: 0.125,
         });
       }
     });
   }
+
+function animateSlide(index) {
+  const slides = document.querySelectorAll('.swiper-slide');
+  const current = slides[index];
+  const image = current?.querySelector('.slide-image');
+
+  if (image) {
+    gsap.fromTo(
+      image,
+      {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 1.4,
+        ease: 'power5.out',  // starts fast, ends slow
+        delay: 0.1,
+      }
+    );
+  }
+}
+
 
   onMounted(() => {
     gsap.registerPlugin(CustomEase);
@@ -142,10 +167,15 @@
       swiperInstance = document.querySelector('.swiper')?.swiper;
 
       if (swiperInstance) {
+        // Animate initial slide
+        animateSlide(swiperInstance.realIndex);
         addTitleToActiveBullet(swiperInstance.realIndex);
 
-        swiperInstance.on('slideChange', () => {
-          addTitleToActiveBullet(swiperInstance.realIndex);
+        // On slide change
+        swiperInstance.on('slideChangeTransitionStart', () => {
+          const index = swiperInstance.realIndex;
+          animateSlide(index);
+          addTitleToActiveBullet(index);
         });
       }
     }, 0);
@@ -164,6 +194,11 @@
     justify-content: center;
     align-items: center;
   }
+
+  .swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
 
   /* Remove Swiper's default bullet styles */
   .custom-swiper-pagination .swiper-pagination-bullet {
