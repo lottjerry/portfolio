@@ -3,27 +3,19 @@
     <!-- Top Navigation -->
     <nav class="fixed left-0 top-0 z-20 flex w-full justify-between p-11">
       <p
+        ref="logo"
         class="font-timmons relative -top-3 text-5xl font-medium uppercase text-black"
       >
         Jerry Lott
       </p>
-      <p class="font-medium uppercase text-black">Resume</p>
+      <p ref="resume" class="font-medium uppercase text-black">Resume</p>
     </nav>
 
     <!-- Background Overlay (behind Swiper) -->
     <div
       ref="bgOverlay"
       class="fixed left-0 top-0 z-0 flex h-dvh w-dvw items-center justify-center bg-[rgb(213,183,71)] opacity-50 brightness-75"
-    >
-      <div>
-        <button
-          @click="swapBackgroundColor()"
-          class="rounded bg-white px-4 py-2 shadow"
-        >
-          Swap Background Color
-        </button>
-      </div>
-    </div>
+    ></div>
 
     <!-- Main Content -->
     <div
@@ -33,14 +25,19 @@
       <div class="custom-swiper-pagination text-center"></div>
 
       <!-- Swiper Slider -->
-      <Swiper :modules="modules" :pagination="pagination"   :speed="1200" class="h-1/2 w-full">
-        <SwiperSlide class="swiper-slide">
+      <Swiper
+        :modules="modules"
+        :pagination="pagination"
+        :speed="1200"
+        class="h-1/2 w-full"
+      >
+        <SwiperSlide class="swiper-slide opacity-75">
           <img src="/assets/images/img1.jpg" alt="" class="slide-image w-1/2" />
         </SwiperSlide>
-        <SwiperSlide class="swiper-slide">
+        <SwiperSlide class="swiper-slide opacity-75">
           <img src="/assets/images/img2.jpg" alt="" class="slide-image w-1/2" />
         </SwiperSlide>
-        <SwiperSlide class="swiper-slide">
+        <SwiperSlide class="swiper-slide opacity-75">
           <img src="/assets/images/img3.jpg" alt="" class="slide-image w-1/2" />
         </SwiperSlide>
       </Swiper>
@@ -48,10 +45,12 @@
 
     <!-- Footer -->
     <footer class="fixed bottom-0 left-0 z-20 flex w-full justify-between p-11">
-      <p class="font-medium uppercase text-black">
+      <p ref="copyright" class="font-medium uppercase text-black">
         © 2025 Jerry Lott Portfolio
       </p>
-      <p class="font-medium uppercase text-black">Social Media Links</p>
+      <p ref="social" class="font-medium uppercase text-black">
+        Social Media Links
+      </p>
     </footer>
   </div>
 </template>
@@ -79,6 +78,10 @@
   };
 
   const bgOverlay = ref(null);
+  const logo = ref(null);
+  const resume = ref(null);
+  const copyright = ref(null);
+  const social = ref(null);
 
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -93,6 +96,11 @@
     const newColor = getRandomColor();
     gsap.to(bgOverlay.value, {
       backgroundColor: newColor,
+      duration: 1.5,
+      ease: 'hop',
+    });
+    gsap.to([logo.value, resume.value, copyright.value, social.value], {
+      color: newColor,
       duration: 1.5,
       ease: 'hop',
     });
@@ -130,31 +138,28 @@
     });
   }
 
-function animateSlide(index) {
-  const slides = document.querySelectorAll('.swiper-slide');
-  const current = slides[index];
-  const image = current?.querySelector('.slide-image');
+  function animateSlide(index) {
+    const slides = document.querySelectorAll('.swiper-slide');
+    const current = slides[index];
+    const image = current?.querySelector('.slide-image');
 
-  if (image) {
-    gsap.fromTo(
-      image,
-      {
-        y: 50,
-        opacity: 0,
-        scale: 0.95,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 1.4,
-        ease: 'power5.out',  // starts fast, ends slow
-        delay: 0.1,
-      }
-    );
+    if (image) {
+      gsap.fromTo(
+        image,
+        {
+          y: 50,
+          scale: 0.8,
+        },
+        {
+          y: 0,
+          scale: 1,
+          duration: 1.4,
+          ease: 'power5.out', // starts fast, ends slow
+          delay: 0.1,
+        },
+      );
+    }
   }
-}
-
 
   onMounted(() => {
     gsap.registerPlugin(CustomEase);
@@ -176,6 +181,9 @@ function animateSlide(index) {
           const index = swiperInstance.realIndex;
           animateSlide(index);
           addTitleToActiveBullet(index);
+
+          // Swap background color on slide change
+          swapBackgroundColor();
         });
       }
     }, 0);
@@ -196,9 +204,8 @@ function animateSlide(index) {
   }
 
   .swiper-wrapper {
-  transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1) !important;
-}
-
+    transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1) !important;
+  }
 
   /* Remove Swiper's default bullet styles */
   .custom-swiper-pagination .swiper-pagination-bullet {
@@ -208,7 +215,7 @@ function animateSlide(index) {
     align-items: center;
     opacity: 0.3;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 
   /* Active bullet styling */
