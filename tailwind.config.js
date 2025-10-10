@@ -7,6 +7,13 @@ export default {
     './plugins/**/*.{js,vue}',
     './nuxt.config.{js,ts}',
   ],
-  theme: {},
+  theme: {
+    extend: {
+      fontFamily: {
+        ppneue: ['"PP Neue Montreal"', 'sans-serif'],
+        timmons: ['"Timmons NY"', 'serif'],
+      },
+    },
+  },
   plugins: [],
-}
+};

@@ -1,8 +1,8 @@
 <template>
-  <div class="h-dvh w-dvw overflow-hidden">
+  <div class="h-dvh w-dvw overflow-hidden font-ppneue">
     <nav class="fixed left-0 top-0 z-10 flex w-dvw justify-between p-11">
-      <p class="relative -top-3 text-5xl font-medium uppercase text-black">
-        Jerry L.
+      <p class="relative -top-3 text-5xl font-medium uppercase text-black font-timmons">
+        Jerry Lott
       </p>
       <p class="font-medium uppercase text-black">Resume</p>
     </nav>
