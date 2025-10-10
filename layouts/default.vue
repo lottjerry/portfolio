@@ -1,12 +1,5 @@
 <template>
-  <div
-    class="relative flex h-dvh flex-col items-center justify-between bg-gray-500 p-5"
-  >
-    <header class="relative z-50 flex w-full justify-center">
-      <Logo />
-      <Navbar />
-    </header>
-
+  <div>
     <!-- Background Overlay -->
     <div ref="background" class="fixed inset-0 z-30 bg-black"></div>
 
@@ -15,10 +8,6 @@
         <slot />
       </div>
     </main>
-
-    <footer class="relative z-50 p-5">
-      <Footer />
-    </footer>
   </div>
 </template>
 
