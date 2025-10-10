@@ -62,9 +62,6 @@
   import { Swiper, SwiperSlide } from 'swiper/vue';
   import { Pagination } from 'swiper/modules';
 
-  const slash = ref('/')
-  const total = ref('06')
-
   // Import Swiper styles
   import 'swiper/css';
   import 'swiper/css/pagination';
@@ -111,14 +108,8 @@
       const number = (i + 1).toString().padStart(2, '0');
 
       if (i === activeIndex) {
-        bullet.innerHTML = `${number}${slash.value}${total.value}`;
-        gsap.to(slash.value,{
-          x:0,
-          opacity:1,
-           duration: 1,
-          ease: 'power2.out',
-          delay: 0.125,
-        })
+        bullet.innerHTML = `${number} / 06`;
+
         gsap.to(bullet, {
           paddingLeft: '1rem',
           paddingRight: '1rem',
