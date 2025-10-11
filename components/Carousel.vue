@@ -32,13 +32,13 @@
         class="h-[60%] w-full"
       >
         <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img1.jpg" alt="" class="slide-image w-[40%]" />
+          <img src="/assets/images/img1.jpg" alt="" class="slide-image w-1/2" />
         </SwiperSlide>
         <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img2.jpg" alt="" class="slide-image w-[40%]" />
+          <img src="/assets/images/img2.jpg" alt="" class="slide-image w-1/2" />
         </SwiperSlide>
         <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img3.jpg" alt="" class="slide-image w-[40%]" />
+          <img src="/assets/images/img3.jpg" alt="" class="slide-image w-1/2" />
         </SwiperSlide>
       </Swiper>
     </div>
