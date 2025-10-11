@@ -19,46 +19,46 @@
 
     <!-- Main Content -->
     <div
-      class="z-10 flex h-dvh w-dvw flex-1 flex-col items-center justify-center space-y-6"
+      class="flex h-dvh w-dvw mt-36 flex-col gap-20"
     >
       <!-- Custom Pagination Bullets ABOVE the slider -->
-      <div class="custom-swiper-pagination mb-20 text-center"></div>
+      <div class="custom-swiper-pagination text-center"></div>
 
       <!-- Swiper Slider -->
       <Swiper
         :modules="modules"
         :pagination="pagination"
         :speed="1200"
-        class="h-1/2 w-full"
+        class="h-[60%] w-full"
       >
         <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img1.jpg" alt="" class="slide-image w-1/2" />
+          <img src="/assets/images/img1.jpg" alt="" class="slide-image w-[40%]" />
         </SwiperSlide>
         <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img2.jpg" alt="" class="slide-image w-1/2" />
+          <img src="/assets/images/img2.jpg" alt="" class="slide-image w-[40%]" />
         </SwiperSlide>
         <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img3.jpg" alt="" class="slide-image w-1/2" />
+          <img src="/assets/images/img3.jpg" alt="" class="slide-image w-[40%]" />
         </SwiperSlide>
       </Swiper>
     </div>
 
     <div
-  class="absolute left-[15%] top-[15%] z-20 grid h-1/2 w-3/4  grid-rows-2 gap-y-20 border text-[20rem]"
+  class="absolute  top-[22%] z-20  border text-[18rem] border-red-600 flex flex-col w-full leading-none"
 >
   <!-- Top Row: HEY -->
-  <div class="grid grid-cols-3 gap-x-20 border border-red-400">
-    <div class="font-timmons mt-2">H</div>
-    <div class="font-timmons -mb-4 ml-4">E</div>
-    <div class="font-timmons mb-6 -ml-2">Y</div>
+  <div class="grid grid-cols-4 gap-x-52">
+    <div class="font-timmons ">H</div>
+    <div class="font-timmons ">E</div>
+    <div class="font-timmons ">Y</div>
   </div>
 
   <!-- Bottom Row: WORLD -->
-  <div class="grid grid-cols-5 gap-x-16 border border-green-400">
-    <div class="font-timmons mt-4">W</div>
-    <div class="font-timmons -mt-3">O</div>
-    <div class="font-timmons ml-3">R</div>
-    <div class="font-timmons mb-5 -ml-2">L</div>
+  <div class="grid grid-cols-6 gap-x-16 ">
+    <div class="font-timmons ">W</div>
+    <div class="font-timmons ">O</div>
+    <div class="font-timmons ">R</div>
+    <div class="font-timmons">L</div>
     <div class="font-timmons">D</div>
   </div>
 </div>
