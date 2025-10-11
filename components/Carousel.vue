@@ -42,22 +42,27 @@
         </SwiperSlide>
       </Swiper>
     </div>
+
     <div
-      class="absolute left-[15%] top-[15%] z-20 flex h-1/2 flex-col items-start justify-start gap-44 border text-[20rem]"
-    >
-      <div class="flex h-2/6 border border-red-400">
-        <div class="font-timmons">H</div>
-        <div class="font-timmons">E</div>
-        <div class="font-timmons">Y</div>
-      </div>
-      <div class="flex h-2/6 border border-green-400">
-        <div class="font-timmons">W</div>
-        <div class="font-timmons">O</div>
-        <div class="font-timmons">R</div>
-        <div class="font-timmons">L</div>
-        <div class="font-timmons">D</div>
-      </div>
-    </div>
+  class="absolute left-[15%] top-[15%] z-20 grid h-1/2 w-3/4  grid-rows-2 gap-y-20 border text-[20rem]"
+>
+  <!-- Top Row: HEY -->
+  <div class="grid grid-cols-3 gap-x-20 border border-red-400">
+    <div class="font-timmons mt-2">H</div>
+    <div class="font-timmons -mb-4 ml-4">E</div>
+    <div class="font-timmons mb-6 -ml-2">Y</div>
+  </div>
+
+  <!-- Bottom Row: WORLD -->
+  <div class="grid grid-cols-5 gap-x-16 border border-green-400">
+    <div class="font-timmons mt-4">W</div>
+    <div class="font-timmons -mt-3">O</div>
+    <div class="font-timmons ml-3">R</div>
+    <div class="font-timmons mb-5 -ml-2">L</div>
+    <div class="font-timmons">D</div>
+  </div>
+</div>
+
 
     <!-- Footer -->
     <footer class="fixed bottom-0 left-0 z-20 flex w-full justify-between p-11">
