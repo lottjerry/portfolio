@@ -39,6 +39,7 @@
           />
 
           <div
+            ref="title"
             class="absolute bottom-10 h-full w-3/5 text-[21rem] leading-none"
           >
             <!-- Top Row: HEY -->
@@ -85,7 +86,7 @@
       </div>
       <div ref="socials" class="flex items-center justify-center gap-5">
         <GitHub class="size-7" />
-        <LinkedIn  class="size-7" />
+        <LinkedIn class="size-7" />
         <Email class="size-7" />
       </div>
     </footer>
@@ -118,8 +119,8 @@
   const logo = ref(null);
   const resume = ref(null);
   const copyright = ref(null);
-  const socials  = ref(null)
-
+  const socials = ref(null);
+  const title = ref(null)
 
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -134,19 +135,22 @@
     const newColor = getRandomColor();
     gsap.to(bgOverlay.value, {
       backgroundColor: newColor,
-      duration: 1.5,
-      ease: 'hop',
+      duration: 1,
+      ease: 'power2.out',
     });
-    gsap.to([logo.value, resume.value, copyright.value, socials.value], {
+    gsap.to([logo.value, resume.value, copyright.value, socials.value, title.value], {
       color: newColor,
-      duration: 1.5,
-      ease: 'hop',
+      duration: 1,
+      ease: 'power2.out',
     });
+
+    const activeIndex = swiperInstance?.realIndex ?? 0;
+    addTitleToActiveBullet(activeIndex, newColor);
   };
 
   let swiperInstance = null;
 
-  function addTitleToActiveBullet(activeIndex) {
+  function addTitleToActiveBullet(activeIndex, newColor) {
     const bullets = document.querySelectorAll('.custom-swiper-pagination div');
 
     bullets.forEach((bullet, i) => {
@@ -186,6 +190,24 @@
           { x: 20, opacity: 0 },
           { x: 0, opacity: 1, duration: 0.75, ease: 'power2.out', delay: 0.15 },
         );
+
+        gsap.to(bullet.querySelector('.bullet-number'), {
+          color: newColor,
+          duration: 1,
+          ease: 'power2.out',
+        });
+
+        gsap.to(bullet.querySelector('.bullet-total'), {
+          color: newColor,
+          duration: 1,
+          ease: 'power2.out',
+        });
+
+        gsap.to(bullet.querySelector('.bullet-separator svg'), {
+          fill: newColor,
+          duration: 1,
+          ease: 'power2.out',
+        });
       } else {
         bullet.innerHTML = `
         <span class="bullet-separator">
@@ -199,8 +221,14 @@
           paddingLeft: '0rem',
           paddingRight: '0rem',
           duration: 1,
-          ease: 'power1.out',
+          ease: 'power2.out',
           delay: 0.125,
+        });
+
+        gsap.to(bullet.querySelector('svg'), {
+          fill: newColor,
+          duration: 1,
+          ease: 'power2.out',
         });
       }
     });
