@@ -18,9 +18,7 @@
     ></div>
 
     <!-- Main Content -->
-    <div
-      class="flex h-dvh w-dvw mt-36 flex-col gap-20"
-    >
+    <div class="mt-32 flex h-dvh w-dvw flex-col gap-10">
       <!-- Custom Pagination Bullets ABOVE the slider -->
       <div class="custom-swiper-pagination text-center"></div>
 
@@ -29,40 +27,45 @@
         :modules="modules"
         :pagination="pagination"
         :speed="1200"
-        class="h-[60%] w-full"
+        class="h-[70%] w-full"
       >
         <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img1.jpg" alt="" class="slide-image w-1/2" />
+          <img
+            src="/assets/images/img1.jpg"
+            alt=""
+            class="slide-image h-[80%] w-1/2"
+          />
+
+          <div
+            class="absolute bottom-10 h-full w-3/5 text-[21rem] leading-none"
+          >
+            <!-- Top Row: HEY -->
+            <div class="ml-20 grid grid-cols-4">
+              <div class="font-timmons">H</div>
+              <div class="font-timmons">E</div>
+              <div class="font-timmons"></div>
+              <div class="font-timmons">Y</div>
+            </div>
+            <!-- Bottom Row: WORLD -->
+            <div class="grid grid-cols-7">
+              <div class="font-timmons"></div>
+              <div class="font-timmons">W</div>
+              <div class="font-timmons">O</div>
+              <div class="font-timmons"></div>
+              <div class="font-timmons">R</div>
+              <div class="font-timmons">L</div>
+              <div class="font-timmons">D</div>
+            </div>
+          </div>
         </SwiperSlide>
         <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img2.jpg" alt="" class="slide-image w-1/2" />
+          <img src="/assets/images/img2.jpg" alt="" class="slide-image h-[80%] w-1/2" />
         </SwiperSlide>
         <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img3.jpg" alt="" class="slide-image w-1/2" />
+          <img src="/assets/images/img3.jpg" alt="" class="slide-image h-[80%] w-1/2" />
         </SwiperSlide>
       </Swiper>
     </div>
-
-    <div
-  class="absolute  top-[22%] z-20  border text-[18rem] border-red-600 flex flex-col w-full leading-none"
->
-  <!-- Top Row: HEY -->
-  <div class="grid grid-cols-4 gap-x-52">
-    <div class="font-timmons ">H</div>
-    <div class="font-timmons ">E</div>
-    <div class="font-timmons ">Y</div>
-  </div>
-
-  <!-- Bottom Row: WORLD -->
-  <div class="grid grid-cols-6 gap-x-16 ">
-    <div class="font-timmons ">W</div>
-    <div class="font-timmons ">O</div>
-    <div class="font-timmons ">R</div>
-    <div class="font-timmons">L</div>
-    <div class="font-timmons">D</div>
-  </div>
-</div>
-
 
     <!-- Footer -->
     <footer class="fixed bottom-0 left-0 z-20 flex w-full justify-between p-11">
