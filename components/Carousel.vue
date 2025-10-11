@@ -22,7 +22,7 @@
       class="z-10 flex h-dvh w-dvw flex-1 flex-col items-center justify-center space-y-6"
     >
       <!-- Custom Pagination Bullets ABOVE the slider -->
-      <div class="custom-swiper-pagination text-center"></div>
+      <div class="custom-swiper-pagination text-center mb-20"></div>
 
       <!-- Swiper Slider -->
       <Swiper
@@ -41,6 +41,22 @@
           <img src="/assets/images/img3.jpg" alt="" class="slide-image w-1/2" />
         </SwiperSlide>
       </Swiper>
+    </div>
+    <div
+      class="absolute left-[15%] top-[15%] border text-[20rem] h-1/2 flex flex-col justify-start items-start z-20 gap-44"
+    >
+      <div class="flex border border-red-400  h-2/6">
+        <div class="font-timmons">H</div>
+        <div class="font-timmons">E</div>
+        <div class="font-timmons">Y</div>
+      </div>
+      <div class="flex border border-green-400  h-2/6">
+        <div class="font-timmons">W</div>
+        <div class="font-timmons">O</div>
+        <div class="font-timmons">R</div>
+        <div class="font-timmons">L</div>
+        <div class="font-timmons">D</div>
+      </div>
     </div>
 
     <!-- Footer -->
