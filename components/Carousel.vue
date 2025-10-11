@@ -1,16 +1,17 @@
 <template>
   <div class="relative flex h-dvh w-dvw flex-col overflow-hidden font-ppneue">
     <!-- Top Navigation -->
-    <nav class="fixed left-0 top-0 z-20 flex w-full justify-between p-11">
+    <nav
+      class="fixed left-0 top-0 z-20 flex h-[20px] w-full justify-between p-8"
+    >
       <p
         ref="logo"
-        class="relative -top-3 font-timmons text-5xl font-medium uppercase text-black"
+        class="logo relative -top-3 font-timmons text-5xl font-medium uppercase text-black"
       >
         Jerry Lott
       </p>
-      <p ref="resume" class="text-2xl font-medium uppercase text-black">
-        Resume
-      </p>
+
+      <p ref="about" class="text-lg font-medium uppercase text-black">About</p>
     </nav>
 
     <!-- Background Overlay (behind Swiper) -->
@@ -20,7 +21,7 @@
     ></div>
 
     <!-- Main Content -->
-    <div class="mt-32 flex h-dvh w-dvw flex-col gap-10">
+    <div class="mt-14 flex h-dvh w-dvw flex-col gap-5">
       <!-- Custom Pagination Bullets ABOVE the slider -->
       <div class="custom-swiper-pagination text-center"></div>
 
@@ -39,7 +40,7 @@
           />
 
           <div
-            ref="title"
+            ref="title1"
             class="absolute bottom-10 h-full w-3/5 text-[21rem] leading-none"
           >
             <!-- Top Row: HEY -->
@@ -61,33 +62,77 @@
             </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide class="swiper-slide opacity-75">
+         <SwiperSlide class="swiper-slide  opacity-75">
           <img
             src="/assets/images/img2.jpg"
             alt=""
             class="slide-image h-[80%] w-1/2"
           />
+          <div
+            ref="title2"
+            class="absolute bottom-10 h-full w-3/5 text-[21rem] leading-none"
+          >
+            <!-- Top Row: HEY -->
+            <div class="ml-20 grid grid-cols-4">
+              <div class="font-timmons">H</div>
+              <div class="font-timmons">E</div>
+              <div class="font-timmons"></div>
+              <div class="font-timmons">Y</div>
+            </div>
+            <!-- Bottom Row: WORLD -->
+            <div class="grid grid-cols-7">
+              <div class="font-timmons"></div>
+              <div class="font-timmons">W</div>
+              <div class="font-timmons">O</div>
+              <div class="font-timmons"></div>
+              <div class="font-timmons">R</div>
+              <div class="font-timmons">L</div>
+              <div class="font-timmons">D</div>
+            </div>
+          </div>
         </SwiperSlide>
-        <SwiperSlide class="swiper-slide border opacity-75">
+        <SwiperSlide class="swiper-slide  opacity-75">
           <img
             src="/assets/images/img3.jpg"
             alt=""
             class="slide-image h-[80%] w-1/2"
           />
+          <div
+            ref="title3"
+            class="absolute bottom-10 h-full w-3/5 text-[21rem] leading-none"
+          >
+            <!-- Top Row: HEY -->
+            <div class="ml-20 grid grid-cols-4">
+              <div class="font-timmons">H</div>
+              <div class="font-timmons">E</div>
+              <div class="font-timmons"></div>
+              <div class="font-timmons">Y</div>
+            </div>
+            <!-- Bottom Row: WORLD -->
+            <div class="grid grid-cols-7">
+              <div class="font-timmons"></div>
+              <div class="font-timmons">W</div>
+              <div class="font-timmons">O</div>
+              <div class="font-timmons"></div>
+              <div class="font-timmons">R</div>
+              <div class="font-timmons">L</div>
+              <div class="font-timmons">D</div>
+            </div>
+          </div>
         </SwiperSlide>
       </Swiper>
     </div>
 
     <!-- Footer -->
-    <footer class="fixed bottom-0 left-0 z-20 flex w-full justify-between p-3">
-      <div ref="copyright" class="font-medium uppercase text-black">
-        <p>© 2025 Jerry Lott Portfolio</p>
+    <footer class="fixed bottom-0 left-0 z-20 flex w-full justify-between p-8">
+      <div ref="copyright" class="text-xs font-medium uppercase text-black">
+        <p>Founder | Designer | Developer</p>
         <p>Available Nov. 2025</p>
       </div>
       <div ref="socials" class="flex items-center justify-center gap-5">
-        <GitHub class="size-7" />
-        <LinkedIn class="size-7" />
-        <Email class="size-7" />
+        <GitHub class="size-5" />
+        <LinkedIn class="size-5" />
+        <Email class="size-5" />
       </div>
     </footer>
   </div>
@@ -98,6 +143,7 @@
   import CustomEase from 'gsap/CustomEase';
   import { Swiper, SwiperSlide } from 'swiper/vue';
   import { Pagination } from 'swiper/modules';
+  import { useAppStore } from '@/stores/appStore';
 
   // Import Swiper styles
   import 'swiper/css';
@@ -115,12 +161,15 @@
     },
   };
 
+  const appStore = useAppStore();
   const bgOverlay = ref(null);
   const logo = ref(null);
-  const resume = ref(null);
+  const about = ref(null);
   const copyright = ref(null);
   const socials = ref(null);
-  const title = ref(null)
+  const title1 = ref(null);
+  const title2 = ref(null);
+  const title3 = ref(null);
 
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -138,11 +187,14 @@
       duration: 1,
       ease: 'power2.out',
     });
-    gsap.to([logo.value, resume.value, copyright.value, socials.value, title.value], {
-      color: newColor,
-      duration: 1,
-      ease: 'power2.out',
-    });
+    gsap.to(
+      [logo.value, about.value, copyright.value, socials.value, title1.value, title2.value, title3.value],
+      {
+        color: newColor,
+        duration: 1,
+        ease: 'power2.out',
+      },
+    );
 
     const activeIndex = swiperInstance?.realIndex ?? 0;
     addTitleToActiveBullet(activeIndex, newColor);
@@ -243,15 +295,12 @@
       gsap.fromTo(
         image,
         {
-          y: 50,
-          scale: 0.8,
+          width: '30%'
         },
         {
-          y: 0,
-          scale: 1,
-          duration: 1.4,
+          width: '50%',
+          duration: 1,
           ease: 'power5.out', // starts fast, ends slow
-          delay: 0.1,
         },
       );
     }
@@ -263,6 +312,7 @@
       'hop',
       'M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1',
     );
+
 
     setTimeout(() => {
       swiperInstance = document.querySelector('.swiper')?.swiper;

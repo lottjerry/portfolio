@@ -23,8 +23,10 @@
 
 <script setup>
   import gsap from 'gsap';
+  import { useAppStore } from '@/stores/appStore';
 
   // Create references for the loader elements
+  const appStore = useAppStore()
   const loader = ref(null);
   const animationLogo = ref(null);
   const loader_logo = ref(null);
@@ -72,8 +74,8 @@
       x: '-100%',
       ease: 'power4.inOut',
       onComplete: () => {
-        emit('loaded'); // Emit 'loaded' event
-        console.log('load complete');
+        emit('loaded');
+        appStore.pageLoaded = true;
       },
     });
   };
