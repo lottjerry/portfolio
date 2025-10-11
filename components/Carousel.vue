@@ -124,55 +124,65 @@
 
   let swiperInstance = null;
 
-function addTitleToActiveBullet(activeIndex) {
-  const bullets = document.querySelectorAll('.custom-swiper-pagination div');
+  function addTitleToActiveBullet(activeIndex) {
+    const bullets = document.querySelectorAll('.custom-swiper-pagination div');
 
-  bullets.forEach((bullet, i) => {
-    const number = (i + 1).toString().padStart(2, '0');
+    bullets.forEach((bullet, i) => {
+      const number = (i + 1).toString().padStart(2, '0');
 
-    // Reset the innerHTML for each bullet
-    if (i === activeIndex) {
-      bullet.innerHTML = `
-        <span class="bullet-number">${number}</span>
-        <span class="bullet-separator">|</span>
-        <span class="bullet-total">06</span>
+      // Reset the innerHTML for each bullet
+      if (i === activeIndex) {
+        bullet.innerHTML = `
+        <span class="bullet-number mr-1 justify-start">${number} </span>
+        <span class="bullet-separator active-separator">
+          <svg width="3px" height="24px" viewBox="0 0 4 24" xmlns="http://www.w3.org/2000/svg" fill="#31373D">
+            <rect x="0" y="0" width="3" height="24" rx="2" />
+          </svg>
+        </span>
+        <span class="bullet-total ml-1"> 06</span>
       `;
 
-      // Animate the whole bullet padding
-      gsap.to(bullet, {
-        paddingLeft: '1rem',
-        paddingRight: '1rem',
-        duration: 1,
-        ease: 'power2.out',
-        delay: 0.125,
-      });
+        // Animate the whole bullet padding
+        gsap.to(bullet, {
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+          duration: 1,
+          ease: 'power2.out',
+          delay: 0.125,
+        });
 
-      // Animate number from left
-      gsap.fromTo(bullet.querySelector('.bullet-number'), 
-        { x: -20, opacity: 0 }, 
-        { x: 0, opacity: 1, duration: 0.75, ease: 'power2.out', delay: 0.15 }
-      );
+        // Animate number from left
+        gsap.fromTo(
+          bullet.querySelector('.bullet-number'),
+          { x: -20, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.75, ease: 'power2.out', delay: 0.15 },
+        );
 
-      // Animate "06" from right
-      gsap.fromTo(bullet.querySelector('.bullet-total'), 
-        { x: 20, opacity: 0 }, 
-        { x: 0, opacity: 1, duration: 0.75, ease: 'power2.out', delay: 0.15 }
-      );
+        // Animate "06" from right
+        gsap.fromTo(
+          bullet.querySelector('.bullet-total'),
+          { x: 20, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.75, ease: 'power2.out', delay: 0.15 },
+        );
+      } else {
+        bullet.innerHTML = `
+        <span class="bullet-separator">
+          <svg width="20px" height="20px" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="#31373D">
+            <path d="M25 24a1 1 0 0 1-1 1H12a1 1 0 0 1-1-1V12a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12z"/>
+          </svg>
+        </span>
+      `;
 
-    } else {
-      bullet.innerHTML = `<span class="bullet-separator">|</span>`;
-
-      gsap.to(bullet, {
-        paddingLeft: '0rem',
-        paddingRight: '0rem',
-        duration: 1,
-        ease: 'power1.out',
-        delay: 0.125,
-      });
-    }
-  });
-}
-
+        gsap.to(bullet, {
+          paddingLeft: '0rem',
+          paddingRight: '0rem',
+          duration: 1,
+          ease: 'power1.out',
+          delay: 0.125,
+        });
+      }
+    });
+  }
 
   function animateSlide(index) {
     const slides = document.querySelectorAll('.swiper-slide');
