@@ -22,7 +22,7 @@
       class="z-10 flex h-dvh w-dvw flex-1 flex-col items-center justify-center space-y-6"
     >
       <!-- Custom Pagination Bullets ABOVE the slider -->
-      <div class="custom-swiper-pagination text-center mb-20"></div>
+      <div class="custom-swiper-pagination mb-20 text-center"></div>
 
       <!-- Swiper Slider -->
       <Swiper
@@ -43,14 +43,14 @@
       </Swiper>
     </div>
     <div
-      class="absolute left-[15%] top-[15%] border text-[20rem] h-1/2 flex flex-col justify-start items-start z-20 gap-44"
+      class="absolute left-[15%] top-[15%] z-20 flex h-1/2 flex-col items-start justify-start gap-44 border text-[20rem]"
     >
-      <div class="flex border border-red-400  h-2/6">
+      <div class="flex h-2/6 border border-red-400">
         <div class="font-timmons">H</div>
         <div class="font-timmons">E</div>
         <div class="font-timmons">Y</div>
       </div>
-      <div class="flex border border-green-400  h-2/6">
+      <div class="flex h-2/6 border border-green-400">
         <div class="font-timmons">W</div>
         <div class="font-timmons">O</div>
         <div class="font-timmons">R</div>
@@ -89,7 +89,7 @@
     clickable: true,
     renderBullet(index, className) {
       const number = (index + 1).toString().padStart(2, '0');
-      return `<span class="${className}" data-index="${index}">${number}</span>`;
+      return `<div class="${className}" data-index="${index}">${number}</div>`;
     },
   };
 
@@ -124,35 +124,55 @@
 
   let swiperInstance = null;
 
-  function addTitleToActiveBullet(activeIndex) {
-    const bullets = document.querySelectorAll('.custom-swiper-pagination span');
+function addTitleToActiveBullet(activeIndex) {
+  const bullets = document.querySelectorAll('.custom-swiper-pagination div');
 
-    bullets.forEach((bullet, i) => {
-      const number = (i + 1).toString().padStart(2, '0');
+  bullets.forEach((bullet, i) => {
+    const number = (i + 1).toString().padStart(2, '0');
 
-      if (i === activeIndex) {
-        bullet.innerHTML = `${number} / 06`;
+    // Reset the innerHTML for each bullet
+    if (i === activeIndex) {
+      bullet.innerHTML = `
+        <span class="bullet-number">${number}</span>
+        <span class="bullet-separator">|</span>
+        <span class="bullet-total">06</span>
+      `;
 
-        gsap.to(bullet, {
-          paddingLeft: '1rem',
-          paddingRight: '1rem',
-          duration: 1,
-          ease: 'power2.out',
-          delay: 0.125,
-        });
-      } else {
-        bullet.innerHTML = number;
+      // Animate the whole bullet padding
+      gsap.to(bullet, {
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.125,
+      });
 
-        gsap.to(bullet, {
-          paddingLeft: '0rem',
-          paddingRight: '0rem',
-          duration: 1,
-          ease: 'power1.out',
-          delay: 0.125,
-        });
-      }
-    });
-  }
+      // Animate number from left
+      gsap.fromTo(bullet.querySelector('.bullet-number'), 
+        { x: -20, opacity: 0 }, 
+        { x: 0, opacity: 1, duration: 0.75, ease: 'power2.out', delay: 0.15 }
+      );
+
+      // Animate "06" from right
+      gsap.fromTo(bullet.querySelector('.bullet-total'), 
+        { x: 20, opacity: 0 }, 
+        { x: 0, opacity: 1, duration: 0.75, ease: 'power2.out', delay: 0.15 }
+      );
+
+    } else {
+      bullet.innerHTML = `<span class="bullet-separator">|</span>`;
+
+      gsap.to(bullet, {
+        paddingLeft: '0rem',
+        paddingRight: '0rem',
+        duration: 1,
+        ease: 'power1.out',
+        delay: 0.125,
+      });
+    }
+  });
+}
+
 
   function animateSlide(index) {
     const slides = document.querySelectorAll('.swiper-slide');
