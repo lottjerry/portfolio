@@ -54,8 +54,9 @@
       { strokeDasharray: '360', strokeDashoffset: '360' },
       {
         strokeDashoffset: '0',
-        delay: 2,
-        duration: 1.8,
+       // delay: 2,
+        //duration: 1.8,
+        duration: 0.5,
         ease: 'power2.inOut',
         stroke: 'black',
       },
@@ -76,6 +77,7 @@
       onComplete: () => {
         emit('loaded');
         appStore.pageLoaded = true;
+        console.log(appStore.pageLoaded)
       },
     });
   };

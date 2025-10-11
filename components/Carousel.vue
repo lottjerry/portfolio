@@ -62,7 +62,7 @@
             </div>
           </div>
         </SwiperSlide>
-         <SwiperSlide class="swiper-slide  opacity-75">
+        <SwiperSlide class="swiper-slide opacity-75">
           <img
             src="/assets/images/img2.jpg"
             alt=""
@@ -91,7 +91,7 @@
             </div>
           </div>
         </SwiperSlide>
-        <SwiperSlide class="swiper-slide  opacity-75">
+        <SwiperSlide class="swiper-slide opacity-75">
           <img
             src="/assets/images/img3.jpg"
             alt=""
@@ -162,6 +162,8 @@
   };
 
   const appStore = useAppStore();
+  const { pageLoaded } = storeToRefs(appStore);
+
   const bgOverlay = ref(null);
   const logo = ref(null);
   const about = ref(null);
@@ -188,7 +190,15 @@
       ease: 'power2.out',
     });
     gsap.to(
-      [logo.value, about.value, copyright.value, socials.value, title1.value, title2.value, title3.value],
+      [
+        logo.value,
+        about.value,
+        copyright.value,
+        socials.value,
+        title1.value,
+        title2.value,
+        title3.value,
+      ],
       {
         color: newColor,
         duration: 1,
@@ -295,7 +305,7 @@
       gsap.fromTo(
         image,
         {
-          width: '30%'
+          width: '30%',
         },
         {
           width: '50%',
@@ -312,7 +322,6 @@
       'hop',
       'M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1',
     );
-
 
     setTimeout(() => {
       swiperInstance = document.querySelector('.swiper')?.swiper;
@@ -340,9 +349,26 @@
       swiperInstance.off('slideChange');
     }
   });
+
+  watch(pageLoaded, (newValue) => {
+    console.log(newValue)
+    // Slide + clip the logo in
+    gsap.to(logo.value, {
+      clipPath: 'circle(100% at 50% 50%)',
+      webkitClipPath: 'circle(100% at 50% 50%)',
+      duration: 0.5,
+      ease: 'power2.out',
+    });
+  });
+
 </script>
 
 <style>
+  .logo {
+    clip-path: circle(0% at 50% 50%);
+    -webkit-clip-path: circle(0% at 50% 50%);
+  }
+
   .swiper-slide {
     display: flex;
     justify-content: center;

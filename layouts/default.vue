@@ -4,7 +4,7 @@
     <div ref="background" class="fixed inset-0 z-30 bg-black"></div>
 
     <main class="relative z-20">
-      <div ref="item">
+      <div>
         <slot />
       </div>
     </main>
@@ -16,24 +16,12 @@
 
   const hidden = ref(true);
   const background = ref(null);
-  const item = ref(null);
   const router = useRouter();
 
   onMounted(() => {
     gsap.set(background.value, { x: '-100vw' });
     const tl = gsap.timeline();
 
-    tl.set(item.value, {
-      y: '-100',
-      opacity: 0,
-    }).to(item.value, {
-      y: '0',
-      delay: 4.2,
-      opacity: 1,
-      duration: 0.5,
-      ease: 'power2.in',
-    });
-    console.log('mounted');
   });
 
   router.beforeEach((to, from, next) => {
