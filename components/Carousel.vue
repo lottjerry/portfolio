@@ -1,14 +1,16 @@
 <template>
-  <div class="font-ppneue relative flex h-dvh w-dvw flex-col overflow-hidden">
+  <div class="relative flex h-dvh w-dvw flex-col overflow-hidden font-ppneue">
     <!-- Top Navigation -->
     <nav class="fixed left-0 top-0 z-20 flex w-full justify-between p-11">
       <p
         ref="logo"
-        class="font-timmons relative -top-3 text-5xl font-medium uppercase text-black"
+        class="relative -top-3 font-timmons text-5xl font-medium uppercase text-black"
       >
         Jerry Lott
       </p>
-      <p ref="resume" class="font-medium uppercase text-black">Resume</p>
+      <p ref="resume" class="text-2xl font-medium uppercase text-black">
+        Resume
+      </p>
     </nav>
 
     <!-- Background Overlay (behind Swiper) -->
@@ -59,22 +61,33 @@
           </div>
         </SwiperSlide>
         <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img2.jpg" alt="" class="slide-image h-[80%] w-1/2" />
+          <img
+            src="/assets/images/img2.jpg"
+            alt=""
+            class="slide-image h-[80%] w-1/2"
+          />
         </SwiperSlide>
-        <SwiperSlide class="swiper-slide opacity-75">
-          <img src="/assets/images/img3.jpg" alt="" class="slide-image h-[80%] w-1/2" />
+        <SwiperSlide class="swiper-slide border opacity-75">
+          <img
+            src="/assets/images/img3.jpg"
+            alt=""
+            class="slide-image h-[80%] w-1/2"
+          />
         </SwiperSlide>
       </Swiper>
     </div>
 
     <!-- Footer -->
-    <footer class="fixed bottom-0 left-0 z-20 flex w-full justify-between p-11">
-      <p ref="copyright" class="font-medium uppercase text-black">
-        © 2025 Jerry Lott Portfolio
-      </p>
-      <p ref="social" class="font-medium uppercase text-black">
-        Social Media Links
-      </p>
+    <footer class="fixed bottom-0 left-0 z-20 flex w-full justify-between p-3">
+      <div ref="copyright" class="font-medium uppercase text-black">
+        <p>© 2025 Jerry Lott Portfolio</p>
+        <p>Available Nov. 2025</p>
+      </div>
+      <div ref="socials" class="flex items-center justify-center gap-5">
+        <GitHub class="size-7" />
+        <LinkedIn  class="size-7" />
+        <Email class="size-7" />
+      </div>
     </footer>
   </div>
 </template>
@@ -105,7 +118,8 @@
   const logo = ref(null);
   const resume = ref(null);
   const copyright = ref(null);
-  const social = ref(null);
+  const socials  = ref(null)
+
 
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -123,7 +137,7 @@
       duration: 1.5,
       ease: 'hop',
     });
-    gsap.to([logo.value, resume.value, copyright.value, social.value], {
+    gsap.to([logo.value, resume.value, copyright.value, socials.value], {
       color: newColor,
       duration: 1.5,
       ease: 'hop',
