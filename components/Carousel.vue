@@ -6,7 +6,7 @@
     >
       <p
         ref="logo"
-        class="logo relative -top-3 font-timmons text-5xl font-medium uppercase text-black"
+        class="logo relative -top-3 font-timmons text-5xl uppercase text-black"
       >
         Jerry Lott
       </p>
@@ -23,7 +23,7 @@
     <!-- Main Content -->
     <div class="mt-14 flex h-dvh w-dvw flex-col gap-5">
       <!-- Custom Pagination Bullets ABOVE the slider -->
-      <div ref="page" class="custom-swiper-pagination text-center info"></div>
+      <div ref="page" class="custom-swiper-pagination info text-center"></div>
 
       <!-- Swiper Slider -->
       <Swiper
@@ -34,6 +34,7 @@
       >
         <SwiperSlide class="swiper-slide opacity-75">
           <img
+            ref="initialImage"
             src="/assets/images/img1.jpg"
             alt=""
             class="slide-image h-[80%] w-1/2"
@@ -45,20 +46,20 @@
           >
             <!-- Top Row: HEY -->
             <div class="ml-20 grid grid-cols-4">
-              <div class="font-timmons">H</div>
-              <div class="font-timmons">E</div>
+              <div ref="letter1" class="font-timmons">H</div>
+              <div ref="letter2" class="font-timmons">E</div>
               <div class="font-timmons"></div>
-              <div class="font-timmons">Y</div>
+              <div ref="letter3" class="font-timmons">Y</div>
             </div>
             <!-- Bottom Row: WORLD -->
             <div class="grid grid-cols-7">
               <div class="font-timmons"></div>
-              <div class="font-timmons">W</div>
-              <div class="font-timmons">O</div>
+              <div ref="letter4" class="font-timmons">W</div>
+              <div ref="letter5" class="font-timmons">O</div>
               <div class="font-timmons"></div>
-              <div class="font-timmons">R</div>
-              <div class="font-timmons">L</div>
-              <div class="font-timmons">D</div>
+              <div ref="letter6" class="font-timmons">R</div>
+              <div ref="letter7" class="font-timmons">L</div>
+              <div ref="letter8" class="font-timmons">D</div>
             </div>
           </div>
         </SwiperSlide>
@@ -179,7 +180,16 @@
   const title3 = ref(null);
   const info_availability = ref(null);
   const info_titles = ref(null);
-  const page = ref(null)
+  const page = ref(null);
+  const initialImage = ref(null);
+  const letter1 = ref(null);
+  const letter2 = ref(null);
+  const letter3 = ref(null);
+  const letter4 = ref(null);
+  const letter5 = ref(null);
+  const letter6 = ref(null);
+  const letter7 = ref(null);
+  const letter8 = ref(null);
 
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -331,11 +341,39 @@
       'M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1',
     );
 
+    gsap.set(initialImage.value, {
+      height: '0%',
+    });
+
     if (logo.value) {
       wrapLetters(logo.value);
     }
     if (about.value) {
       wrapLetters(about.value);
+    }
+    if (letter1.value) {
+      wrapLetters(letter1.value);
+    }
+    if (letter2.value) {
+      wrapLetters(letter2.value);
+    }
+    if (letter3.value) {
+      wrapLetters(letter3.value);
+    }
+    if (letter4.value) {
+      wrapLetters(letter4.value);
+    }
+    if (letter5.value) {
+      wrapLetters(letter5.value);
+    }
+    if (letter6.value) {
+      wrapLetters(letter6.value);
+    }
+    if (letter7.value) {
+      wrapLetters(letter7.value);
+    }
+    if (letter8.value) {
+      wrapLetters(letter8.value);
     }
 
     setTimeout(() => {
@@ -403,11 +441,28 @@
     if (val) {
       animateLettersIn(logo.value);
       animateLettersIn(about.value);
-      gsap.to([info_availability.value, info_titles.value, socials.value, page.value], {
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-        webkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+      animateLettersIn(letter1.value);
+      animateLettersIn(letter2.value);
+      animateLettersIn(letter3.value);
+      animateLettersIn(letter4.value);
+      animateLettersIn(letter5.value);
+      animateLettersIn(letter6.value);
+      animateLettersIn(letter7.value);
+      animateLettersIn(letter8.value);
+      gsap.to(
+        [info_availability.value, info_titles.value, socials.value, page.value],
+        {
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          webkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          duration: 0.7,
+          ease: 'power2.out',
+        },
+      );
+
+      gsap.to(initialImage.value, {
+        height: '80%',
         duration: 0.7,
-        ease: 'power2.out',
+        ease: 'power4.inOut',
       });
     }
   });
