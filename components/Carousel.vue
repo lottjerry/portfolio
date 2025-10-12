@@ -23,7 +23,7 @@
     <!-- Main Content -->
     <div class="mt-14 flex h-dvh w-dvw flex-col gap-5">
       <!-- Custom Pagination Bullets ABOVE the slider -->
-      <div class="custom-swiper-pagination text-center"></div>
+      <div ref="page" class="custom-swiper-pagination text-center info"></div>
 
       <!-- Swiper Slider -->
       <Swiper
@@ -125,14 +125,19 @@
 
     <!-- Footer -->
     <footer class="fixed bottom-0 left-0 z-20 flex w-full justify-between p-8">
-      <div ref="copyright" class="text-xs font-medium uppercase text-black">
-        <p>Founder | Designer | Developer</p>
-        <p>Available Nov. 2025</p>
+      <div
+        ref="info"
+        class="flex flex-col text-xs font-medium uppercase text-black"
+      >
+        <p ref="info_titles" class="info">Founder | Designer | Developer</p>
+        <p ref="info_availability" class="info">Available Nov. 2025</p>
       </div>
-      <div ref="socials" class="flex items-center justify-center gap-5">
-        <GitHub class="size-5" />
-        <LinkedIn class="size-5" />
-        <Email class="size-5" />
+      <div ref="socials" class="info flex items-center justify-center">
+        <div class="flex gap-3">
+          <GitHub class="size-5" />
+          <LinkedIn class="size-5" />
+          <Email class="size-5" />
+        </div>
       </div>
     </footer>
   </div>
@@ -167,11 +172,14 @@
   const bgOverlay = ref(null);
   const logo = ref(null);
   const about = ref(null);
-  const copyright = ref(null);
+  const info = ref(null);
   const socials = ref(null);
   const title1 = ref(null);
   const title2 = ref(null);
   const title3 = ref(null);
+  const info_availability = ref(null);
+  const info_titles = ref(null);
+  const page = ref(null)
 
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -193,7 +201,7 @@
       [
         logo.value,
         about.value,
-        copyright.value,
+        info.value,
         socials.value,
         title1.value,
         title2.value,
@@ -323,6 +331,13 @@
       'M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1',
     );
 
+    if (logo.value) {
+      wrapLetters(logo.value);
+    }
+    if (about.value) {
+      wrapLetters(about.value);
+    }
+
     setTimeout(() => {
       swiperInstance = document.querySelector('.swiper')?.swiper;
 
@@ -350,23 +365,78 @@
     }
   });
 
-  watch(pageLoaded, (newValue) => {
-    console.log(newValue)
-    // Slide + clip the logo in
-    gsap.to(logo.value, {
-      clipPath: 'circle(100% at 50% 50%)',
-      webkitClipPath: 'circle(100% at 50% 50%)',
-      duration: 0.5,
-      ease: 'power2.out',
-    });
-  });
+  function wrapLetters(el) {
+    const text = el.textContent.trim();
+    el.innerHTML = '';
 
+    text.split('').forEach((char) => {
+      const wrapper = document.createElement('span');
+      wrapper.classList.add('letter-wrapper');
+
+      const span = document.createElement('span');
+      span.textContent = char;
+
+      wrapper.appendChild(span);
+      el.appendChild(wrapper);
+    });
+  }
+
+  function animateLettersIn(el, options = {}) {
+    const letters = el.querySelectorAll('.letter-wrapper span');
+    gsap.fromTo(
+      letters,
+      {
+        x: '100%',
+        opacity: 0,
+      },
+      {
+        x: '0%',
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power4.out',
+        stagger: options.stagger ?? 0,
+      },
+    );
+  }
+
+  watch(pageLoaded, (val) => {
+    if (val) {
+      animateLettersIn(logo.value);
+      animateLettersIn(about.value);
+      gsap.to([info_availability.value, info_titles.value, socials.value, page.value], {
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        webkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        duration: 0.7,
+        ease: 'power2.out',
+      });
+    }
+  });
 </script>
 
 <style>
   .logo {
-    clip-path: circle(0% at 50% 50%);
-    -webkit-clip-path: circle(0% at 50% 50%);
+    display: flex;
+    gap: 0.1em;
+  }
+
+  .info {
+    display: inline-block;
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    overflow: hidden;
+  }
+
+  .letter-wrapper {
+    display: inline-block;
+    height: 2em; /* Ensure it's only tall enough for one line */
+    overflow: hidden;
+  }
+
+  .letter-wrapper span {
+    display: inline-block;
+    transform: translateX(-100%);
+    opacity: 0;
+    will-change: transform, opacity;
   }
 
   .swiper-slide {
