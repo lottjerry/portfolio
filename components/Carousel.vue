@@ -125,14 +125,53 @@
     </div>
 
     <!-- Footer -->
-    <footer class="fixed bottom-0 left-0 z-20 flex w-full justify-between p-8">
-      <div
-        ref="info"
-        class="flex flex-col text-xs font-medium uppercase text-black"
-      >
-        <p ref="info_titles" class="info">Founder | Designer | Developer</p>
-        <p ref="info_availability" class="info">Available Nov. 2025</p>
+    <footer
+      class="fixed bottom-0 left-0 z-20 flex w-full items-center justify-between p-8"
+    >
+      <div class="flex w-[87%] justify-between">
+        <div
+          ref="info"
+          class="flex flex-col text-xs font-medium uppercase text-black"
+        >
+          <p ref="info_titles" class="info">Founder | Designer | Developer</p>
+          <p ref="info_availability" class="info">Available Nov. 2025</p>
+        </div>
+        <div class="flex gap-20 text-[10px] uppercase">
+          <div class="flex gap-10">
+            <div class="flex gap-5">
+              <div class="info" ref="numerals">
+                <p>I</p>
+                <p>II</p>
+                <p>III</p>
+                <p>IV</p>
+              </div>
+              <div class="info" ref="categories">
+                <p>Completed</p>
+                <p>Type</p>
+                <p>Role</p>
+                <p>Client</p>
+              </div>
+            </div>
+            <div class="info" ref="catResponse">
+              <p>August 2022</p>
+              <p>Promotional</p>
+              <p>Designer & Developer</p>
+              <p>Faith McKim</p>
+            </div>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <div ref="exploreBtn" class="info">
+              <Explore class="size-5" />
+            </div>
+            <p ref="exploreText" class="text-xs font-medium">Explore</p>
+          </div>
+          <div ref="description" class="info w-[30%]">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam veniam
+            itaque quaerat explicabo earum nostrum.
+          </div>
+        </div>
       </div>
+
       <div ref="socials" class="info flex items-center justify-center">
         <div class="flex gap-3">
           <GitHub class="size-5" />
@@ -182,6 +221,12 @@
   const info_titles = ref(null);
   const page = ref(null);
   const initialImage = ref(null);
+  const numerals = ref(null);
+  const categories = ref(null);
+  const catResponse = ref(null);
+  const description = ref(null);
+  const exploreBtn = ref(null);
+  const exploreText = ref(null);
   const letter1 = ref(null);
   const letter2 = ref(null);
   const letter3 = ref(null);
@@ -213,9 +258,15 @@
         about.value,
         info.value,
         socials.value,
+        numerals.value,
+        exploreText.value,
+        exploreBtn.value,
         title1.value,
         title2.value,
         title3.value,
+        categories.value,
+        catResponse.value,
+        description.value,
       ],
       {
         color: newColor,
@@ -351,6 +402,9 @@
     if (about.value) {
       wrapLetters(about.value);
     }
+    if (exploreText.value) {
+      wrapLetters(exploreText.value);
+    }
     if (letter1.value) {
       wrapLetters(letter1.value);
     }
@@ -441,6 +495,7 @@
     if (val) {
       animateLettersIn(logo.value);
       animateLettersIn(about.value);
+      animateLettersIn(exploreText.value);
       animateLettersIn(letter1.value);
       animateLettersIn(letter2.value);
       animateLettersIn(letter3.value);
@@ -450,7 +505,18 @@
       animateLettersIn(letter7.value);
       animateLettersIn(letter8.value);
       gsap.to(
-        [info_availability.value, info_titles.value, socials.value, page.value],
+        [
+          info_availability.value,
+          info_titles.value,
+          socials.value,
+          exploreBtn.value,
+          page.value,
+          numerals.value,
+          categories.value,
+          catResponse.value,
+          description.value,
+          exploreBtn.value,
+        ],
         {
           clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
           webkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
