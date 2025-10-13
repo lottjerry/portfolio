@@ -32,7 +32,7 @@
         :speed="1200"
         class="h-[70%] w-full"
       >
-        <SwiperSlide class="swiper-slide opacity-75">
+        <SwiperSlide class="swiper-slide flex flex-col opacity-75">
           <img
             ref="initialImage"
             src="/assets/images/img1.jpg"
@@ -60,6 +60,42 @@
               <div ref="letter6" class="font-timmons">R</div>
               <div ref="letter7" class="font-timmons">L</div>
               <div ref="letter8" class="font-timmons">D</div>
+            </div>
+          </div>
+          <div
+            class="flex w-1/2 justify-center gap-20 border border-red-400 text-[10px] uppercase"
+          >
+            <div class="flex gap-10">
+              <div class="flex gap-5">
+                <div class="info" ref="numerals">
+                  <p>I</p>
+                  <p>II</p>
+                  <p>III</p>
+                  <p>IV</p>
+                </div>
+                <div class="info" ref="categories">
+                  <p>Completed</p>
+                  <p>Type</p>
+                  <p>Role</p>
+                  <p>Client</p>
+                </div>
+              </div>
+              <div class="info" ref="catResponse">
+                <p>August 2022</p>
+                <p>Promotional</p>
+                <p>Designer & Developer</p>
+                <p>Faith McKim</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+              <div ref="exploreBtn" class="info">
+                <Explore class="size-5" />
+              </div>
+              <p ref="exploreText" class="text-xs font-medium">Explore</p>
+            </div>
+            <div ref="description" class="info w-[30%]">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+              veniam itaque quaerat explicabo earum nostrum.
             </div>
           </div>
         </SwiperSlide>
@@ -128,47 +164,13 @@
     <footer
       class="fixed bottom-0 left-0 z-20 flex w-full items-center justify-between p-8"
     >
-      <div class="flex w-[87%] justify-between">
+      <div class="flex justify-between">
         <div
           ref="info"
           class="flex flex-col text-xs font-medium uppercase text-black"
         >
           <p ref="info_titles" class="info">Founder | Designer | Developer</p>
           <p ref="info_availability" class="info">Available Nov. 2025</p>
-        </div>
-        <div class="flex gap-20 text-[10px] uppercase">
-          <div class="flex gap-10">
-            <div class="flex gap-5">
-              <div class="info" ref="numerals">
-                <p>I</p>
-                <p>II</p>
-                <p>III</p>
-                <p>IV</p>
-              </div>
-              <div class="info" ref="categories">
-                <p>Completed</p>
-                <p>Type</p>
-                <p>Role</p>
-                <p>Client</p>
-              </div>
-            </div>
-            <div class="info" ref="catResponse">
-              <p>August 2022</p>
-              <p>Promotional</p>
-              <p>Designer & Developer</p>
-              <p>Faith McKim</p>
-            </div>
-          </div>
-          <div class="flex flex-col items-center gap-2">
-            <div ref="exploreBtn" class="info">
-              <Explore class="size-5" />
-            </div>
-            <p ref="exploreText" class="text-xs font-medium">Explore</p>
-          </div>
-          <div ref="description" class="info w-[30%]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam veniam
-            itaque quaerat explicabo earum nostrum.
-          </div>
         </div>
       </div>
 
