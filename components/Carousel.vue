@@ -37,7 +37,7 @@
             ref="initialImage"
             src="/assets/images/img1.jpg"
             alt=""
-            class="slide-image h-[80%] w-1/2"
+            class="slide-image w-1/2"
           />
 
           <div
