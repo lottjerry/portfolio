@@ -1,9 +1,8 @@
 <template>
-<main class="h-dvh w-dvw bg-[rgb(213,183,71)]">
-  <header>
+  <main class="h-dvh w-dvw bg-[rgb(213,183,71)]">
     <Nav />
-  </header>
-</main>
+    <Footer />
+  </main>
 </template>
 
 <script setup></script>
