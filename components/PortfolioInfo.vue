@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="flex justify-between text-xs">
+    <div class="flex h-[150px] items-center justify-between text-xs font-bold">
       <!-- NUMERALS & CATEGORIES -->
       <div class="flex gap-5">
         <div class="flex flex-col">
@@ -33,12 +33,12 @@
         </p>
       </div>
       <!-- EXPLORE BUTTON -->
-      <div class="flex flex-col items-center gap-2">
+      <div class="flex flex-col items-center self-start cursor-pointer">
         <div ref="exploreBtn" class="info letter-wrapper">
-          <Explore class="icon size-5" />
+          <Explore class="icon size-10" />
         </div>
-        <p ref="exploreText" class="letter-wrapper text-xs font-medium">
-          <span>Explore</span>
+        <p ref="exploreText" class="letter-wrapper">
+          <span class="text-lg font-bold">Explore</span>
         </p>
       </div>
       <!-- DESCRIPTION -->

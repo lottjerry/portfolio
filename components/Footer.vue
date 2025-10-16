@@ -1,11 +1,11 @@
 <template>
   <footer
-    class="fixed bottom-0 left-0 z-20 flex w-full items-center justify-between p-8"
+    class="fixed bottom-0 left-0 z-20 flex h-[150px] w-full items-center justify-between p-8"
   >
     <!-- ROLES/AVAILABILITY -->
     <div
       ref="info"
-      class="flex flex-col text-xs font-medium uppercase text-black"
+      class="flex flex-col text-xs font-black uppercase text-black"
     >
       <p ref="info_titles" class="letter-wrapper">
         <span>Founder | Designer | Developer</span>
@@ -30,7 +30,6 @@
 <script setup>
   import gsap from 'gsap';
   import { useAppStore } from '@/stores/appStore';
-
 
   const appStore = useAppStore();
   const { pageLoaded } = storeToRefs(appStore);
