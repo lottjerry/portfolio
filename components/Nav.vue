@@ -45,7 +45,6 @@
 <style scoped>
   .letter-wrapper {
     display: inline-block;
-    height: 2em;
     overflow: hidden;
   }
 

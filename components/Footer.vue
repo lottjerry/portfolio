@@ -2,6 +2,7 @@
   <footer
     class="fixed bottom-0 left-0 z-20 flex w-full items-center justify-between p-8"
   >
+    <!-- ROLES/AVAILABILITY -->
     <div
       ref="info"
       class="flex flex-col text-xs font-medium uppercase text-black"
@@ -13,7 +14,9 @@
         <span>Available Nov. 2025</span>
       </p>
     </div>
-
+    <!-- PORTFOLIOINFO -->
+    <PortfolioInfo />
+    <!-- SOCIAL ICONS -->
     <div ref="socials" class="letter-wrapper items-center justify-center">
       <div class="flex gap-3">
         <GitHub class="icon size-5" />
@@ -27,6 +30,7 @@
 <script setup>
   import gsap from 'gsap';
   import { useAppStore } from '@/stores/appStore';
+
 
   const appStore = useAppStore();
   const { pageLoaded } = storeToRefs(appStore);
@@ -47,7 +51,6 @@
 <style scoped>
   .letter-wrapper {
     display: inline-block;
-    height: 1.5em;
     overflow: hidden;
   }
 
