@@ -9,7 +9,7 @@
       <span class="letter-wrapper"><span>y</span></span>
     </h1>
     <!-- PAGINATION -->
-    <div>Pagination goes here.</div>
+    <p>{{ appStore.carouselIndex }}</p>
     <!-- ABOUT -->
     <h2 class="text-lg font-medium uppercase">
       <span class="letter-wrapper"><span>J</span></span>
