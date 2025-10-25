@@ -22,9 +22,9 @@
 
     <!-- Main Content -->
     <div class="mt-14 flex h-dvh w-dvw flex-col gap-5">
-      <!-- Custom Pagination Bullets ABOVE the slider -->
+      <!-- ********************** Custom Pagination Bullets ABOVE the slider ****************************** -->
       <div ref="page" class="custom-swiper-pagination info text-center"></div>
-
+      <!-- ********************************************* -->
       <!-- Swiper Slider -->
       <Swiper
         :modules="modules"

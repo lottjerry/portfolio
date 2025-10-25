@@ -12,4 +12,17 @@
     justify-content: center;
     align-items: center;
   }
+
+  :deep(.swiper-pagination-bullet) {
+    opacity: 0.5;
+    cursor: pointer;
+    background: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  :deep(.swiper-pagination-bullet-active) {
+    opacity: 1;
+  }
 </style>
