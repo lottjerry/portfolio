@@ -2,15 +2,9 @@
   <div class="mt-20 h-1/2 w-dvw">
     <!-- add top margin to make space for nav -->
     <swiper
+      :modules="modules"
+      :pagination="pagination"
       class="border-3 border border-red-500"
-      :modules="[Pagination]"
-      :pagination="{
-        el: '#swiper-pagination', // target element in Nav
-        clickable: true,
-        renderBullet: (index, className) => {
-          return `<span class='${className}'>${index + 1}</span>`;
-        },
-      }"
     >
       <swiper-slide v-for="(image, index) in images" :key="index">
         <img :src="image" alt="" class="slide-image w-1/2" />
@@ -25,6 +19,18 @@
   import 'swiper/css';
   import 'swiper/css/pagination';
 
+  // ******* SWIPER CONFIG  ******* //
+  const modules = [Pagination];
+
+  const pagination = {
+    el: '#swiper-pagination',
+    clickable: true,
+    renderBullet(index, className) {
+      const number = (index + 1).toString().padStart(2, '0');
+      return `<div class="${className}" data-index="${index}">${number}</div>`;
+    },
+  };
+
   // Vite import images automatically
   const images = Object.values(
     import.meta.glob('@/assets/slider-images/*.jpg', {
@@ -32,6 +38,10 @@
       import: 'default',
     }),
   );
+
+  onMounted(()=> {
+    
+  })
 </script>
 
 <style scoped>
