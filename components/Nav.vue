@@ -8,8 +8,8 @@
       <span class="letter-wrapper"><span>r</span></span>
       <span class="letter-wrapper"><span>y</span></span>
     </h1>
-    <!-- PAGINATION -->
-    <p>{{ appStore.carouselIndex }}</p>
+    <!-- SWIPER PAGINATION -->
+    <SwiperPagination />
     <!-- ABOUT -->
     <h2 class="text-lg font-medium uppercase">
       <span class="letter-wrapper"><span>J</span></span>
@@ -24,12 +24,12 @@
 <script setup>
   import gsap from 'gsap';
   import { useAppStore } from '@/stores/appStore';
+import SwiperPagination from './SwiperPagination.vue';
 
   const appStore = useAppStore();
   const { pageLoaded } = storeToRefs(appStore);
 
-
-  // Watch pageLoaded for changes. If change run the gsap animation. 
+  // Watch pageLoaded for changes. If change run the gsap animation.
   watch(pageLoaded, (val) => {
     if (val) {
       gsap.to(['.letter-wrapper span'], {
@@ -52,5 +52,11 @@
     display: inline-block;
     transform: translateX(-100%);
     opacity: 0;
+  }
+
+  #swiper-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

@@ -7,7 +7,6 @@
 </template>
 
 <script setup>
-import NewCarousel from '~/components/NewCarousel.vue';
 
 </script>
 
