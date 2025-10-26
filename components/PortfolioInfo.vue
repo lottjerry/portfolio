@@ -42,7 +42,7 @@
         </p>
       </div>
       <!-- DESCRIPTION -->
-      <p class="letter-wrapper w-[40%] h-1/2">
+      <p class="letter-wrapper w-[40%]">
         <span>{{ portfolioInfo[0].Description }}</span>
       </p>
     </div>
