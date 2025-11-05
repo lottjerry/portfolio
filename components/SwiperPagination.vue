@@ -14,15 +14,15 @@
   }
 
   :deep(.swiper-pagination-bullet) {
-    opacity: 0.5;
+    all: unset; /* Remove all default styles */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    background: none;
-    color: #333;
-    font-weight: 600;
-    font-size: 1rem;
   }
 
   :deep(.swiper-pagination-bullet-active) {
-    opacity: 1;
+    color: black;
+    font-weight: 500;
   }
 </style>
